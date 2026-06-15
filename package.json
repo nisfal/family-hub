@@ -1,0 +1,17 @@
+{
+  "name": "family-hub-mongo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Family Hub silsilah keluarga besar dengan API Node.js dan penyimpanan MongoDB.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "seed": "node scripts/import-seed.js"
+  },
+  "dependencies": {
+    "mongodb": "^6.16.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

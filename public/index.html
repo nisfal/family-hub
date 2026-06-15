@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Family Hub</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Family Hub</p>
+        <h1 id="familyName">Silsilah Keluarga Besar</h1>
+      </div>
+      <nav>
+        <a href="#tree">Pohon</a>
+        <a href="#members">Anggota</a>
+        <a href="#timeline">Timeline</a>
+        <a href="#agenda">Agenda</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="stats">
+        <div><strong id="memberCount">0</strong><span>Anggota</span></div>
+        <div><strong id="generationCount">0</strong><span>Generasi</span></div>
+        <div><strong id="eventCount">0</strong><span>Agenda</span></div>
+        <div><strong id="dbMode">-</strong><span>Database</span></div>
+      </section>
+
+      <section id="tree" class="panel">
+        <div class="section-title">
+          <div>
+            <p class="eyebrow">Pohon interaktif</p>
+            <h2>Lintas generasi</h2>
+          </div>
+          <input id="search" type="search" placeholder="Cari anggota keluarga">
+        </div>
+        <div id="treeCanvas" class="tree-canvas"></div>
+      </section>
+
+      <section class="split">
+        <article id="members" class="panel">
+          <div class="section-title">
+            <div>
+              <p class="eyebrow">Profil</p>
+              <h2>Anggota keluarga</h2>
+            </div>
+          </div>
+          <form id="memberForm" class="member-form">
+            <input name="fullName" placeholder="Nama lengkap" required>
+            <input name="nickname" placeholder="Nama panggilan">
+            <select name="gender">
+              <option value="unknown">Gender</option>
+              <option value="male">Laki-laki</option>
+              <option value="female">Perempuan</option>
+            </select>
+            <input name="generation" type="number" min="1" value="1" aria-label="Generasi">
+            <input name="role" placeholder="Peran keluarga">
+            <button type="submit">Tambah anggota</button>
+          </form>
+          <div id="memberList" class="member-list"></div>
+        </article>
+
+        <aside class="panel profile-panel">
+          <p class="eyebrow">Detail anggota</p>
+          <div id="profile"></div>
+        </aside>
+      </section>
+
+      <section class="split">
+        <article id="timeline" class="panel">
+          <p class="eyebrow">Sejarah</p>
+          <h2>Timeline keluarga</h2>
+          <div id="timelineList" class="timeline"></div>
+        </article>
+        <article id="agenda" class="panel">
+          <p class="eyebrow">Kegiatan</p>
+          <h2>Agenda keluarga</h2>
+          <form id="eventForm" class="event-form">
+            <input name="title" placeholder="Nama agenda" required>
+            <input name="eventDate" type="date" required>
+            <input name="location" placeholder="Lokasi">
+            <button type="submit">Tambah</button>
+          </form>
+          <div id="agendaList" class="agenda-list"></div>
+        </article>
+      </section>
+
+      <section class="panel">
+        <p class="eyebrow">Album</p>
+        <h2>Ruang arsip keluarga</h2>
+        <div class="album-placeholder">
+          <div>Foto lama</div>
+          <div>Video keluarga</div>
+          <div>Dokumen sejarah</div>
+        </div>
+      </section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
