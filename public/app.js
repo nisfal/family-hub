@@ -70,10 +70,19 @@ function renderTree() {
         <div class="generation-members">
           ${members.map((member) => `
             <button class="person-card ${member.gender}" data-member-id="${member.id}">
-              <strong>${member.fullName}</strong>
-              <span>${member.role}</span>
+              <div class="person-head">
+                <div class="mini-avatar">${initials(member.fullName)}</div>
+                <div>
+                  <strong>${member.fullName}</strong>
+                  <span>${member.nickname || "Anggota keluarga"}</span>
+                </div>
+              </div>
               <span>Pasangan: ${text(member.spouse?.fullName)}</span>
               <span>Anak: ${member.children.length}</span>
+              <div class="chip-row">
+                <span class="chip">${member.role}</span>
+                <span class="chip">Gen ${member.generation}</span>
+              </div>
             </button>
           `).join("")}
         </div>
@@ -86,7 +95,7 @@ function renderMembers() {
   list.innerHTML = state.members.filter(memberMatches).map((member) => `
     <button class="member-row" data-member-id="${member.id}">
       <strong>${member.fullName}</strong>
-      <span>Gen ${member.generation} · ${member.role}</span>
+      <span>Gen ${member.generation} - ${member.role}</span>
       <span>${member.parents.map((parent) => parent.fullName).join(" & ") || "Orang tua belum tercatat"}</span>
     </button>
   `).join("");
@@ -99,14 +108,14 @@ function renderProfile() {
   document.querySelector("#profile").innerHTML = `
     <div class="avatar">${initials(selected.fullName)}</div>
     <h2 class="profile-name">${selected.fullName}</h2>
-    <p class="meta">${selected.role} · Generasi ${selected.generation}</p>
+    <p class="meta">${selected.role} - Generasi ${selected.generation}</p>
     <div class="profile-grid">
       <div><b>Nama panggilan</b>${text(selected.nickname)}</div>
       <div><b>Jenis kelamin</b>${text(selected.gender)}</div>
       <div><b>Ayah/Ibu</b>${selected.parents.map((parent) => parent.fullName).join(" & ") || "-"}</div>
       <div><b>Pasangan</b>${text(selected.spouse?.fullName)}</div>
       <div><b>Anak</b>${selected.children.map((child) => child.fullName).join(", ") || "-"}</div>
-      <div><b>Tempat/Tanggal lahir</b>${text(selected.birthPlace)} · ${text(selected.birthDate)}</div>
+      <div><b>Tempat/Tanggal lahir</b>${text(selected.birthPlace)} - ${text(selected.birthDate)}</div>
       <div><b>Pekerjaan</b>${text(selected.occupation)}</div>
       <div><b>Domisili</b>${text(selected.address)}</div>
       <div><b>Status</b>${selected.isDeceased ? "Almarhum/almarhumah" : "Aktif"}</div>
@@ -127,13 +136,14 @@ function renderEvents() {
   agenda.innerHTML = state.events.map((event) => `
     <div class="agenda-card">
       <strong>${event.title}</strong>
-      <p>${event.eventDate} · ${text(event.location)}</p>
+      <p>${event.eventDate} - ${text(event.location)}</p>
     </div>
   `).join("");
 }
 
 function renderAll(health) {
   document.querySelector("#familyName").textContent = state.family.familyName;
+  document.querySelector("#familyDescription").textContent = state.family.description;
   renderStats(health);
   renderTree();
   renderMembers();

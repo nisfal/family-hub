@@ -8,9 +8,12 @@
   </head>
   <body>
     <header class="topbar">
-      <div>
-        <p class="eyebrow">Family Hub</p>
-        <h1 id="familyName">Silsilah Keluarga Besar</h1>
+      <div class="brand">
+        <div class="brand-mark">FH</div>
+        <div>
+          <p class="eyebrow">Family Hub</p>
+          <h1 id="familyName">Silsilah Keluarga Besar</h1>
+        </div>
       </div>
       <nav>
         <a href="#tree">Pohon</a>
@@ -21,11 +24,30 @@
     </header>
 
     <main>
+      <section class="family-hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Rumah digital keluarga</p>
+          <h2>Merawat silsilah, cerita, dan agenda keluarga besar dalam satu tempat.</h2>
+          <p id="familyDescription" class="hero-description">Pusat informasi keluarga lintas generasi.</p>
+          <div class="hero-actions">
+            <a href="#tree">Lihat pohon keluarga</a>
+            <a href="#members">Tambah anggota</a>
+          </div>
+        </div>
+        <div class="family-mosaic" aria-hidden="true">
+          <div class="mosaic-card tall">M</div>
+          <div class="mosaic-card">A</div>
+          <div class="mosaic-card warm">N</div>
+          <div class="mosaic-card soft">E</div>
+          <div class="mosaic-card wide">Keluarga Besar</div>
+        </div>
+      </section>
+
       <section class="stats">
-        <div><strong id="memberCount">0</strong><span>Anggota</span></div>
-        <div><strong id="generationCount">0</strong><span>Generasi</span></div>
-        <div><strong id="eventCount">0</strong><span>Agenda</span></div>
-        <div><strong id="dbMode">-</strong><span>Database</span></div>
+        <div><span>Anggota</span><strong id="memberCount">0</strong></div>
+        <div><span>Generasi</span><strong id="generationCount">0</strong></div>
+        <div><span>Agenda</span><strong id="eventCount">0</strong></div>
+        <div><span>Database</span><strong id="dbMode">-</strong></div>
       </section>
 
       <section id="tree" class="panel">
@@ -34,7 +56,10 @@
             <p class="eyebrow">Pohon interaktif</p>
             <h2>Lintas generasi</h2>
           </div>
-          <input id="search" type="search" placeholder="Cari anggota keluarga">
+          <label class="search-box">
+            <span>Cari</span>
+            <input id="search" type="search" placeholder="Nama, peran, gender">
+          </label>
         </div>
         <div id="treeCanvas" class="tree-canvas"></div>
       </section>
@@ -47,7 +72,7 @@
               <h2>Anggota keluarga</h2>
             </div>
           </div>
-          <form id="memberForm" class="member-form">
+          <form id="memberForm" class="member-form form-card">
             <input name="fullName" placeholder="Nama lengkap" required>
             <input name="nickname" placeholder="Nama panggilan">
             <select name="gender">
@@ -77,7 +102,7 @@
         <article id="agenda" class="panel">
           <p class="eyebrow">Kegiatan</p>
           <h2>Agenda keluarga</h2>
-          <form id="eventForm" class="event-form">
+          <form id="eventForm" class="event-form form-card">
             <input name="title" placeholder="Nama agenda" required>
             <input name="eventDate" type="date" required>
             <input name="location" placeholder="Lokasi">
