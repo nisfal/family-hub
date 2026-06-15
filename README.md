@@ -4,19 +4,45 @@ MVP pusat informasi keluarga besar: pohon keluarga, profil anggota, timeline, ag
 
 ## Menjalankan
 
-```powershell
-$env:MONGODB_URI="mongodb://127.0.0.1:27017"
-$env:MONGODB_DB="family_hub"
-node server.js
-```
-
-Jika package `mongodb` belum terpasang, jalankan:
+Install dependency:
 
 ```powershell
 npm install
 ```
 
-Untuk demo tanpa MongoDB, aplikasi otomatis memakai file lokal `data/local-db.json`.
+Buat file `.env` dari `.env.example`:
+
+```powershell
+copy .env.example .env
+```
+
+Konfigurasi default untuk MongoDB lokal:
+
+```env
+PORT=3000
+MONGODB_URI=mongodb://localhost:27017/
+MONGODB_DB=family_hub
+```
+
+Jalankan aplikasi:
+
+```powershell
+node server.js
+```
+
+Pastikan MongoDB lokal sudah berjalan di:
+
+```text
+mongodb://localhost:27017/
+```
+
+Database yang dipakai aplikasi:
+
+```text
+family_hub
+```
+
+Jika MongoDB atau package `mongodb` belum tersedia, aplikasi otomatis memakai file lokal `data/local-db.json` untuk mode demo.
 
 ## Import Data
 
@@ -25,6 +51,8 @@ Data contoh dari `data/silsilah_keluarga_updated.ndjson` akan otomatis di-seed s
 ```powershell
 node scripts/import-seed.js
 ```
+
+Dengan `.env` default, perintah seed akan mengisi MongoDB lokal `family_hub`.
 
 ## Endpoint API
 

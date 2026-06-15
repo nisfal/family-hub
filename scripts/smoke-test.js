@@ -2,8 +2,10 @@ const { spawn } = require("node:child_process");
 
 const server = spawn(process.execPath, ["server.js"], {
   cwd: process.cwd(),
+  env: { ...process.env, PORT: process.env.PORT || "3000" },
   stdio: ["ignore", "pipe", "pipe"]
 });
+const port = process.env.PORT || "3000";
 
 let output = "";
 server.stdout.on("data", (chunk) => {
@@ -18,7 +20,7 @@ function wait(ms) {
 }
 
 async function request(path) {
-  const response = await fetch(`http://127.0.0.1:3000${path}`);
+  const response = await fetch(`http://127.0.0.1:${port}${path}`);
   if (!response.ok) throw new Error(`${path} returned ${response.status}`);
   return response.headers.get("content-type")?.includes("application/json") ? response.json() : response.text();
 }

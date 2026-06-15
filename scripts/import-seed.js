@@ -1,4 +1,7 @@
+const { loadEnv } = require("../lib/env");
 const { createSeedData } = require("../lib/seed");
+
+loadEnv();
 
 async function main() {
   if (!process.env.MONGODB_URI) {
